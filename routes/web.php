@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PlaceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::prefix('place')->group(function () {
+    Route::get('create', [PlaceController::class, 'create'])->name('place.create');
+    Route::post('store', [PlaceController::class, 'store'])->name('place.store');
+});
