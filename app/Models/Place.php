@@ -12,11 +12,11 @@ class Place extends Model
 {
     use HasFactory;
 
-    protected $attributes = [
-        "name" => "",
-        "notes" => "",
-        "latitude" => 0.0,
-        "longitude" => 0.0,
+    protected $fillable = [
+        "name",
+        "notes",
+        "latitude",
+        "longitude",
     ];
 
     public function users(): BelongsToMany

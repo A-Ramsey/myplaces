@@ -18,7 +18,7 @@
         </div>
         @include('places.partials.google-maps')
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button form="create-place" action="submit">{{ __('Save') }}</x-primary-button>
         </div>
         
     </x-forms.form>
