@@ -23,14 +23,15 @@ class PlaceController extends Controller
     {
         $formData = $request->validate([
             'name' => 'required|string|max:255',
-            'notes' => 'required|string|max:4000',
+            'notes' => 'max:4000',
+            'star_rating' => 'required|integer|between:1,5',
             'latitude' => 'required|numeric|between:-90,90',
             'longitude' => 'required|numeric|between:-180,180',
         ]);
 
         $place = Place::create($formData);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('place.index');
     }
 
     public function show($id)
@@ -38,5 +39,24 @@ class PlaceController extends Controller
         $place = Place::findOrFail($id);
 
         return view('places.show', ['place' => $place]);
+    }
+
+
+    public function delete($id)
+    {
+        // dd($id);
+        $place = Place::findOrFail($id);
+
+        return view('places.delete', ['place' => $place]);
+    }
+
+    public function destroy($id)
+    {
+        request()->validate([]);
+        $place = Place::findOrFail($id);
+
+        $place->delete();
+
+        return redirect()->route('place.index');
     }
 }

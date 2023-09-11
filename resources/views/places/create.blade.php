@@ -16,9 +16,10 @@
             <x-text-area-input id="notes" name="notes" type="text" class="mt-1 block w-full" :value="old('notes')" autofocus autocomplete="notes" />
             <x-input-error class="mt-2" :messages="$errors->get('notes')" />
         </div>
+        <x-star-rating is-input="true" />
         @include('places.partials.google-maps')
         <div class="flex items-center gap-4">
-            <x-primary-button form="create-place" action="submit">{{ __('Save') }}</x-primary-button>
+            <x-primary-button form="create-place">{{ __('Save') }}</x-primary-button>
         </div>
         
     </x-forms.form>

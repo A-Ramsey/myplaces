@@ -17,11 +17,11 @@ class Form extends Component
      *
      * @return void
      */
-    public function __construct($name, $title, $action, $method = "POST", $small=true, $tagline="")
+    public function __construct($title, $action, $name="", $method = "POST", $small=true, $tagline="")
     {
-        $this->name = $name;
         $this->title = $title;
         $this->action = $action;
+        $this->name = ($name == "") ? str_replace(' ', '-', strtolower($title)) : $name;
         $this->method = $method;
         $this->small = $small;
         $this->tagline = $tagline;

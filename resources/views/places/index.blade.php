@@ -21,11 +21,11 @@
                 });
 
                 @foreach($places as $place)
-                    let marker = new google.maps.Marker({
-                        map: map,
+                    let marker{{ $place->id }} = new google.maps.Marker({
                         position: new google.maps.LatLng({{ $place->latitude }}, {{ $place->longitude }}),
                         title: "{{ $place->name }}",
                     });
+                    marker{{ $place->id }}.setMap(map);
                 @endforeach
             }
 

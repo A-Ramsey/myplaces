@@ -15,6 +15,7 @@ class Place extends Model
     protected $fillable = [
         "name",
         "notes",
+        "star_rating",
         "latitude",
         "longitude",
     ];
