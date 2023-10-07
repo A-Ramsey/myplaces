@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Place;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,21 @@ class PlaceController extends Controller
 
         $place = Place::create($formData);
 
-        return redirect()->route('place.index');
+        $images = $request->validate([
+            'images' => ''
+        ]);
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $img) {
+                if (substr($img->getMimeType(), 0, 5) != 'image') {
+                    continue;
+                }
+                $path = $img->storePublicly('images');
+                $place->images()->create(['path' => $path]);
+            }
+        }
+
+        return redirect()->route('place.show', ['id' => $place->id]);
     }
 
     public function show($id)

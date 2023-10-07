@@ -17,6 +17,11 @@
             <x-input-error class="mt-2" :messages="$errors->get('notes')" />
         </div>
         <x-star-rating is-input="true" />
+        <div>
+            <x-input-label for="images[]" :value="__('Image')" />
+            <x-file-input id="images" name="images[]" type="file" accept="image/*" class="mt-1 block w-full" :value="old('image')" autofocus autocomplete="images" multiple />
+            <x-input-error class="mt-2" :messages="$errors->get('image')" />
+        </div>
         @include('places.partials.google-maps')
         <div class="flex items-center gap-4">
             <x-primary-button form="create-place">{{ __('Save') }}</x-primary-button>
